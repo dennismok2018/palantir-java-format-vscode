@@ -51,6 +51,6 @@ This extension contributes the following settings:
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.8
 
 Initial release
