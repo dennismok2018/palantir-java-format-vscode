@@ -174,7 +174,7 @@ function provideDocumentFormattingEditsImpl(document: vscode.TextDocument, optio
             throw new Error("Activation failed: 'pathForExecutable' not configured");
         }
 
-        const documentFormatExcludingImportsEnabled = extensionConfig.get<boolean>("extension_documentFormatExcludingImports");
+        const documentFormatExcludingImportsEnabled = extensionConfig.get<boolean>("enableDocumentFormatExcludingImports");
         if (documentFormatExcludingImportsEnabled){
             // documentFormatExcludingImports configs
             const style = extensionConfig.get<string>("style");

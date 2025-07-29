@@ -97,7 +97,7 @@
           "default": false,
           "description": "If true, does not reflow string literals that exceed the column limit. Equivalent to --skip-reflowing-long-strings."
         },
-        "palantir-java-format-vscode.extension_documentFormatExcludingImports" :{
+        "palantir-java-format-vscode.enableDocumentFormatExcludingImports" :{
           "type": "boolean",
           "default": false,
           "description": "(extension added mode) When enabled, causes `editor.action.formatDocument` to behave like `palantir-java-format-vscode.documentFormatExcludingImports`"

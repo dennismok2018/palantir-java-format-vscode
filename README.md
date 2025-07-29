@@ -42,7 +42,7 @@ This extension contributes the following settings:
     - editor.action.formatDocument
     - palantir-java-format-vscode.documentFormatExcludingImports
 
-- `palantir-java-format-vscode.extension_documentFormatExcludingImports`: (extension added mode) When enabled, causes `editor.action.formatDocument` to behave like `palantir-java-format-vscode.documentFormatExcludingImports`.
+- `palantir-java-format-vscode.enableDocumentFormatExcludingImports`: (extension added mode) When enabled, causes `editor.action.formatDocument` to behave like `palantir-java-format-vscode.documentFormatExcludingImports`.
   - DEFAULT: false
   - Applying commands:
     - editor.action.formatDocument
