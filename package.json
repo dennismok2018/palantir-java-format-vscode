@@ -47,7 +47,7 @@
       },
       {
         "command": "palantir-java-format-vscode.documentFormatExcludingImports",
-        "title": "Format document excluding import statements.",
+        "title": "Format document excluding import statements",
         "category": "Java"
       }
     ],
@@ -59,7 +59,7 @@
           "java"
         ],
         "extensions": [
-          "foo"
+          "java"
         ]
       }
     ],
