@@ -51,6 +51,8 @@ function documentFormatExcludingImportsImpl(){
             throw new Error("Activation failed: 'pathForExecutable' not configured");
         }
 
+        const debugMode = extensionConfig.get<boolean>("enableDebugMode");
+
         // documentFormatExcludingImports configs
         const style = extensionConfig.get<string>("style");
         const skipReflowingLongStrings = extensionConfig.get<boolean>("skipReflowingLongStrings");
@@ -71,14 +73,16 @@ function documentFormatExcludingImportsImpl(){
         if (document.lineCount < 1){
             throw new Error("Activation failed: 0 line file");
         } else if (document.lineCount === 1){
-            const command = `${pathForExecutable} - ${optionsString}`;
-            output = execSync(command, { input: fullText }).toString();
+            const command = `${pathForExecutable} ${optionsString}`;
+            if (debugMode){vscode.window.showInformationMessage(`executing command: ${command} ${document.uri.fsPath}`);}
+            output = execSync(command + " -", { input: fullText }).toString();
         } else {
             const maybeImportLine = findLastImportLineNum(fullText);
             const nextLineOrBeginning = maybeImportLine? maybeImportLine + 1 : 1;
             const lastLineOrSameLine = document.lineCount > nextLineOrBeginning? document.lineCount : nextLineOrBeginning;
-            const command = `${pathForExecutable} - --lines=${nextLineOrBeginning}:${lastLineOrSameLine} ${optionsString}`;
-            output = execSync(command, { input: fullText }).toString();
+            const command = `${pathForExecutable} --lines=${nextLineOrBeginning}:${lastLineOrSameLine} ${optionsString}`;
+            if (debugMode){vscode.window.showInformationMessage(`executing command: ${command} ${document.uri.fsPath}`);}
+            output = execSync(command + " -", { input: fullText }).toString();
         }
         // getExceptImportsReformattedOutput end
 
@@ -118,6 +122,8 @@ function formatImportsImpl(){
             throw new Error("Activation failed: 'pathForExecutable' not configured");
         }
 
+        const debugMode = extensionConfig.get<boolean>("enableDebugMode");
+
         // formatImports configs
         const style = extensionConfig.get<string>("style");
         const skipSortingImports = extensionConfig.get<boolean>("skipSortingImports");
@@ -135,8 +141,9 @@ function formatImportsImpl(){
         const { document } = activeTextEditor;
         const fullText = document.getText();
 
-        const command = `${pathForExecutable} -  ${optionsString}`;
-        const output = execSync(command, { input: fullText }).toString();
+        const command = `${pathForExecutable} ${optionsString}`;
+        if (debugMode){vscode.window.showInformationMessage(`executing command: ${command} ${document.uri.fsPath}`);}
+        const output = execSync(command + " -", { input: fullText }).toString();
 
         const edit = new vscode.WorkspaceEdit();
         edit.replace(document.uri, 
@@ -175,6 +182,8 @@ function provideDocumentFormattingEditsImpl(document: vscode.TextDocument, optio
         }
 
         const documentFormatExcludingImportsEnabled = extensionConfig.get<boolean>("enableDocumentFormatExcludingImports");
+        const debugMode = extensionConfig.get<boolean>("enableDebugMode");
+
         if (documentFormatExcludingImportsEnabled){
             // documentFormatExcludingImports configs
             const style = extensionConfig.get<string>("style");
@@ -195,14 +204,16 @@ function provideDocumentFormattingEditsImpl(document: vscode.TextDocument, optio
             if (document.lineCount < 1){
                 throw new Error("Activation failed: 0 line file");
             } else if (document.lineCount === 1){
-                const command = `${pathForExecutable} - ${optionsString}`;
-                output = execSync(command, { input: fullText }).toString();
+                const command = `${pathForExecutable} ${optionsString}`;
+                if (debugMode){vscode.window.showInformationMessage(`executing command: ${command} ${document.uri.fsPath}`);}
+                output = execSync(command + " -", { input: fullText }).toString();
             } else {
                 const maybeImportLine = findLastImportLineNum(fullText);
                 const nextLineOrBeginning = maybeImportLine? maybeImportLine + 1 : 1;
                 const lastLineOrSameLine = document.lineCount > nextLineOrBeginning? document.lineCount : nextLineOrBeginning;
-                const command = `${pathForExecutable} - --lines=${nextLineOrBeginning}:${lastLineOrSameLine} ${optionsString}`;
-                output = execSync(command, { input: fullText }).toString();
+                const command = `${pathForExecutable} --lines=${nextLineOrBeginning}:${lastLineOrSameLine} ${optionsString}`;
+                if (debugMode){vscode.window.showInformationMessage(`executing command: ${command} ${document.uri.fsPath}`);}
+                output = execSync(command + " -", { input: fullText }).toString();
             }
             // getExceptImportsReformattedOutput end
 
@@ -232,8 +243,9 @@ function provideDocumentFormattingEditsImpl(document: vscode.TextDocument, optio
 
         const fullText = document.getText();
 
-        const command = `${pathForExecutable} - ${optionsString}`;
-        const output = execSync(command, { input: fullText }).toString();
+        const command = `${pathForExecutable} ${optionsString}`;
+        if (debugMode){vscode.window.showInformationMessage(`executing command: ${command} ${document.uri.fsPath}`);}
+        const output = execSync(command + " -", { input: fullText }).toString();
 
         return [vscode.TextEdit.replace(new vscode.Range(
             document.positionAt(0),
@@ -275,6 +287,8 @@ function provideDocumentRangeFormattingEditsImpl(document: vscode.TextDocument, 
             throw new Error("Activation failed: 'pathForExecutable' not configured");
         }
 
+        const debugMode = extensionConfig.get<boolean>("enableDebugMode");
+
         // selectionFormatting configs
         const style = extensionConfig.get<string>("style");
         // selectionFormatting configs end
@@ -293,8 +307,9 @@ function provideDocumentRangeFormattingEditsImpl(document: vscode.TextDocument, 
 
 
 
-        const command = `${pathForExecutable} - --offset=${offset} --length=${length} ${optionsString}`;
-        const output = execSync(command, { input: fullText }).toString();
+        const command = `${pathForExecutable} --offset=${offset} --length=${length} ${optionsString}`;
+        if (debugMode){vscode.window.showInformationMessage(`executing command: ${command} ${document.uri.fsPath}`);}
+        const output = execSync(command + " -", { input: fullText }).toString();
 
         return [vscode.TextEdit.replace(new vscode.Range(
             document.positionAt(0),
