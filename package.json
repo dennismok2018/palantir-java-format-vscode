@@ -2,7 +2,7 @@
   "name": "palantir-java-format-vscode",
   "displayName": "palantir-java-format-vscode",
   "description": "Wrapper of `palantir-java-format` for vscode java formatting",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "engines": {
     "vscode": "^1.102.0"
   },
@@ -47,7 +47,7 @@
       },
       {
         "command": "palantir-java-format-vscode.documentFormatExcludingImports",
-        "title": "Format document excluding import statements.",
+        "title": "Format document excluding import statements",
         "category": "Java"
       }
     ],
@@ -59,7 +59,7 @@
           "java"
         ],
         "extensions": [
-          "foo"
+          "java"
         ]
       }
     ],
@@ -70,7 +70,7 @@
           "title": "pathForExecutable",
           "type": "string",
           "default": "palantir-java-format",
-          "description": "Excutable path for the `palantir-java-format` executable."
+          "description": "Excutable path for the `palantir-java-format` executable"
         },
         "palantir-java-format-vscode.style": {
           "type": "string",
@@ -80,27 +80,32 @@
             "AOSP"
           ],
           "default": "Palantir",
-          "description": "Formatting style to use. Options are Google Style, AOSP (--aosp) OR Palantir (--palantir). Cannot use both aosp and palantir style."
+          "description": "Formatting style to use. Options are Google Style, AOSP (--aosp) OR Palantir (--palantir). Cannot use both aosp and palantir style"
         },
         "palantir-java-format-vscode.skipSortingImports": {
           "type": "boolean",
           "default": false,
-          "description": "If true, skips fixing the import order but still removes unused imports. Equivalent to --skip-sorting-imports."
+          "description": "If true, skips fixing the import order but still removes unused imports. Equivalent to --skip-sorting-imports"
         },
         "palantir-java-format-vscode.skipRemovingUnusedImports": {
           "type": "boolean",
           "default": false,
-          "description": "If true, skips removing unused imports but still sorts imports. Equivalent to --skip-removing-unused-imports."
+          "description": "If true, skips removing unused imports but still sorts imports. Equivalent to --skip-removing-unused-imports"
         },
         "palantir-java-format-vscode.skipReflowingLongStrings": {
           "type": "boolean",
           "default": false,
-          "description": "If true, does not reflow string literals that exceed the column limit. Equivalent to --skip-reflowing-long-strings."
+          "description": "If true, does not reflow string literals that exceed the column limit. Equivalent to --skip-reflowing-long-strings"
         },
         "palantir-java-format-vscode.enableDocumentFormatExcludingImports" :{
           "type": "boolean",
           "default": false,
           "description": "(extension added mode) When enabled, causes `editor.action.formatDocument` to behave like `palantir-java-format-vscode.documentFormatExcludingImports`"
+        },
+        "palantir-java-format-vscode.enableDebugMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "When enabled, use vscode popup window to show the executing formatting command"
         }
       }
     }

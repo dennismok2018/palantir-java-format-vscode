@@ -47,10 +47,11 @@ This extension contributes the following settings:
   - Applying commands:
     - editor.action.formatDocument
 
+- `palantir-java-format-vscode.enableDebugMode`: When enabled, use vscode popup window to show the executing formatting command
+  - DEFAULT: false
+
 <!-- ## Known Issues -->
 
 ## Release Notes
 
-### 0.0.8
-
-Initial release
+see [CHANGELOG.md](CHANGELOG.md)
